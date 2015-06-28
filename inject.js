@@ -5,6 +5,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-    console.log("he clicado");
-});
+(function(){
+   $(document).ready(function(){
+        $("#js_itemlist").append('<section class="filtergroup cf">Mi primer hack</section>');
+
+
+    $('#js_itemlist ul li').each(function(indice, elemento) {
+        console.log('El elemento con el índice '+indice+' contiene '+$(elemento).text());
+    });
+
+   });
+}());

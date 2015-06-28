@@ -11,15 +11,12 @@
     "default_title": "Click here!"
   },
 
-  "background":{
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/",
     "tabs",
-    "http://www.trivago.es/?"
+    "http://www.trivago.es/*"
     ],
   "permissions": ["background", "notifications"],
   "manifest_version": 2,
@@ -28,7 +25,7 @@
     {
       "matches": ["http://www.trivago.es/*"],
       "js": [
-        "jquery/jquery-2.0.3.min.js",
+        "jquery/jquery.js",
         "inject.js"
       ],
       "css": ["inject.css"]

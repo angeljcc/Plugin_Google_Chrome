@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+
+  "name": "Trivago Hack",
+  "description": "This extension show a other view of Trivago",
+  "version": "1.0",
+
+
+  "browser_action": {
+    "default_icon":"icon.png",
+    "default_title": "Click here!"
+  },
+
+  "background":{
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/",
+    "tabs",
+    "http://www.trivago.es/?"
+    ],
+  "permissions": ["background", "notifications"],
+  "manifest_version": 2,
+
+  "content_scripts":[
+    {
+      "matches": ["http://www.trivago.es/*"],
+      "js": [
+        "jquery/jquery-2.0.3.min.js",
+        "inject.js"
+      ],
+      "css": ["inject.css"]
+    }
+  ]
+
+}

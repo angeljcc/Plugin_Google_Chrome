@@ -7,12 +7,20 @@
 
 (function(){
    $(document).ready(function(){
-        $("#js_itemlist").append('<section class="filtergroup cf">Mi primer hack</section>');
 
 
-    $('#js_itemlist ul li').each(function(indice, elemento) {
-        console.log('El elemento con el índice '+indice+' contiene '+$(elemento).text());
+    var lista = new Array();
+    $('#js_itemlist').each(function(indice, elemento) {
+        //console.log('El elemento con el índice '+indice+' contiene '+$(elemento).html());
+        lista.push($(elemento).html());
+
     });
+    $("#js_itemlist").html("");
+    $("#js_itemlist").append('<section class="filtergroup cf">Mi primer hack</section>');
+    for(i=0;i<lista.length;i++) {
+        //lista[i].next('.item_image').css()
+       $("#js_itemlist").append(lista[i]);
+    }
 
    });
 }());

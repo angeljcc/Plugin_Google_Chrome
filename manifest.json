@@ -23,7 +23,7 @@
 
   "content_scripts":[
     {
-      "matches": ["http://www.trivago.es/*"],
+      "matches": ["http://www.trivago.es/*","http://www.trivago.com/*"],
       "js": [
         "jquery/jquery.js",
         "inject.js"

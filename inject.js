@@ -12,7 +12,7 @@
     var lista = new Array();
 
     //I go over the ul and get into an array.
-    $('#js_itemlist').each(function(indice, elemento) {
+    $('#js_itemlist >li').each(function(indice, elemento) {
         lista.push($(elemento).html());
 
     });
@@ -34,7 +34,7 @@
         $(".item_prices").removeClass('item_prices');
 
         //Now, built the slide to pass each item.
-        var $objetoSlide = $('#js_itemlist');
+        var $objetoSlide = $('#js_itemlist > li');
 
         var $actual,$siguiente;
        if($objetoSlide.has('.Activa')){
@@ -50,6 +50,17 @@
        }
         $siguiente.addClass('Activa').fadeIn();
        $actual.removeClass('Active').fadeOut();
+
+       $(document).keydown(function(key) {
+           switch(parseInt(key.which,10)) {
+               case 37:
+                   //$('img').animate({left: "-=10px"}, 'fast');
+                   break;
+               case 39:
+                   //$('img').animate({left: "+=10px"}, 'fast');
+                   break;
+           }
+       });
 
    });
 }());

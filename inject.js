@@ -12,15 +12,18 @@
     var lista = new Array();
 
     //I go over the ul and get into an array.
-    $('#js_itemlist >li').each(function(indice, elemento) {
-        lista.push($(elemento).html());
 
-    });
+       lista = $('#js_itemlist').children('li');
+        console.log(lista[0]);
+
     //Drop the ul in #js_itemlist to be putting our slide
     $("#js_itemlist").html("");
     for(i=0;i<lista.length;i++) {
-        //lista[i].next('.item_image').css()
+        //$(lista[i]).hide();
        $("#js_itemlist").append(lista[i]);
+        $("#js_itemlist").find('li.hotel').hide();
+        $("#js_itemlist").find('li:first').show().addClass('Activa');
+        console.log("i: "+i);
     }
        //Add classes that we need, and I create in CSS
         $(".item").addClass('item2');
@@ -33,31 +36,31 @@
         $(".item_image").removeClass('item_image');
         $(".item_prices").removeClass('item_prices');
 
-        //Now, built the slide to pass each item.
-        var $objetoSlide = $('#js_itemlist > li');
-
-        var $actual,$siguiente;
-       if($objetoSlide.has('.Activa')){
-            $objetoSlide.find('li:first').addClass('Activa');
-       }
-
-       $actual = $objetoSlide.find('.Activa');
-
-       if($actual.next().length>0){
-           $siguiente = $actual.next();
-       }else{
-           $siguiente = $objetoSlide.find('li:first');
-       }
-        $siguiente.addClass('Activa').fadeIn();
-       $actual.removeClass('Active').fadeOut();
-
+        var numli=0;
+        var actual = $('#js_itemlist').find('li:first');
        $(document).keydown(function(key) {
            switch(parseInt(key.which,10)) {
                case 37:
                    //$('img').animate({left: "-=10px"}, 'fast');
+                   $(actual).hide().removeClass('Activa');
+                   actual= $(actual).prev('li').show().addClass('Activa');
+                   console.log(numli);
+                   numli--;
+                   if(numli<=0){
+                       numli=lista.length-numli;
+                       actual = $('#js_itemlist').find('li:last');
+                   }
                    break;
                case 39:
-                   //$('img').animate({left: "+=10px"}, 'fast');
+                   //RIGHT
+                   $(actual).hide().removeClass('Activa');
+                   actual= $(actual).next('li').show().addClass('Activa');
+                    console.log(numli);
+                   numli++;
+                   if(numli >= lista.length){
+                       numli=0;
+                       actual = $('#js_itemlist').find('li:first');
+                   }
                    break;
            }
        });

@@ -14,17 +14,17 @@
     //I go over the ul and get into an array.
 
        lista = $('#js_itemlist').children('li');
-        console.log(lista[0]);
 
     //Drop the ul in #js_itemlist to be putting our slide
     $("#js_itemlist").html("");
-    for(i=0;i<lista.length;i++) {
+    for(i=0;i<lista.length-1;i++) {
         //$(lista[i]).hide();
        $("#js_itemlist").append(lista[i]);
         $("#js_itemlist").find('li.hotel').hide();
         $("#js_itemlist").find('li:first').show().addClass('Activa');
-        console.log("i: "+i);
+
     }
+
        //Add classes that we need, and I create in CSS
         $(".item").addClass('item2');
         $(".item_wrapper").addClass('item_wrapper2');
@@ -37,29 +37,34 @@
         $(".item_prices").removeClass('item_prices');
 
         var numli=0;
-        var actual = $('#js_itemlist').find('li:first');
+        var actual= $('#js_itemlist').find('li:first');
        $(document).keydown(function(key) {
            switch(parseInt(key.which,10)) {
                case 37:
-                   //$('img').animate({left: "-=10px"}, 'fast');
-                   $(actual).hide().removeClass('Activa');
-                   actual= $(actual).prev('li').show().addClass('Activa');
-                   console.log(numli);
+                   //LEFT
                    numli--;
+                   console.log(numli);
                    if(numli<=0){
-                       numli=lista.length-numli;
-                       actual = $('#js_itemlist').find('li:last');
+                       numli=lista.length-1;
+                       $(actual).hide();
+                       actual = $('#js_itemlist').find('li:nth-child(numli)').slideToggle();
+                   }else {
+                       $(actual).hide();
+                       actual = $(actual).prev('li').slideToggle();
                    }
                    break;
                case 39:
                    //RIGHT
-                   $(actual).hide().removeClass('Activa');
-                   actual= $(actual).next('li').show().addClass('Activa');
-                    console.log(numli);
                    numli++;
-                   if(numli >= lista.length){
+                   console.log(numli);
+
+                   if(numli >= lista.length-1){
                        numli=0;
-                       actual = $('#js_itemlist').find('li:first');
+                       $(actual).hide();
+                       actual = $('#js_itemlist').find('li:first').slideToggle();
+                   }else{
+                       $(actual).hide();
+                       actual= $(actual).next('li').slideToggle();
                    }
                    break;
            }
